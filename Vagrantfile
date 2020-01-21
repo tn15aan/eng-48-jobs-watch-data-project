@@ -18,5 +18,6 @@ Vagrant.configure("2") do |config|
     chef.nodes_path = 'nodes'
     chef.arguments = '--chef-license=accept'
 
+    
   end
 end
