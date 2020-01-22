@@ -7,17 +7,16 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/xenial64"
-  config.vm.network "private_network", ip: "192.168.10.150"
-  config.hostsupdater.aliases = ["database.local"]
+  config.vm.box = "ubuntu/bionic64"
 
   # provision
   config.vm.provision 'chef_solo' do |chef|
     chef.cookbooks_path = "cookbooks"
     chef.add_recipe 'dev_env'
-    chef.nodes_path = 'nodes'
+    # chef.nodes_path = 'nodes'
     chef.arguments = '--chef-license=accept'
 
-    
+    config.vm.synced_folder "./code", "/home/ubuntu/code"
+
   end
 end
